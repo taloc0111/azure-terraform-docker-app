@@ -54,7 +54,7 @@ The Azure Application Gateway is defined in the [application_gateway.tf](modules
 
 The Azure Resource Group is created to hold all the resources. It is defined in the [main.tf](main.tf) file.
 
-![Azure Resource Group](images/azure_resource_group.png)
+![Azure Resource Group](images/resource_group.png)
 
 ## Usage
 
