@@ -3,7 +3,22 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "devops-rg"
+    storage_account_name  = "loctadevopsteststorage"
+    container_name        = "tfstate"
+    key                   = "terraform.tfstate"
+  }
+}
+
+data "azurerm_resource_group" "existing" {
+  name     = var.resource_group_name
+  provider = azurerm
+}
+
 resource "azurerm_resource_group" "example" {
+  count    = data.azurerm_resource_group.existing.id == "" ? 1 : 0
   name     = var.resource_group_name
   location = var.location
 }
